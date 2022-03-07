@@ -7,6 +7,7 @@ exports.addExpense = catchAsyncError(async (req, res, next) => {
     discount,
     totalAmount,
     recivedItems,
+    localBrand
   } = req.body;
 
   const expense = await new Expense({
@@ -14,6 +15,7 @@ exports.addExpense = catchAsyncError(async (req, res, next) => {
     discount,
     totalAmount,
     recivedItems,
+    localBrand
   }).save();
 
   res.status(201).json({
@@ -33,7 +35,7 @@ exports.getAllExpense = catchAsyncError(async (req, res, next) => {
     const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const endOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
 
-    const expense = await Expense.find({ createdAt: { $gte: startOfToday, $lt: endOfToday } }).populate("recivedItems.product");
+    const expense = await Expense.find({ createdAt: { $gte: startOfToday, $lt: endOfToday } }).populate('supplier');
     res.status(200).json({
       success: true,
       expense,
@@ -44,7 +46,7 @@ exports.getAllExpense = catchAsyncError(async (req, res, next) => {
     const day = new Date();
     day.setDate(day.getDate() - 7);
 
-    const expense = await Expense.find({ createdAt: { $gte: day } }).populate("recivedItems.product");
+    const expense = await Expense.find({ createdAt: { $gte: day } }).populate('supplier');
     res.status(200).json({
       success: true,
       expense,
@@ -55,14 +57,14 @@ exports.getAllExpense = catchAsyncError(async (req, res, next) => {
     const day = new Date();
     day.setDate(day.getDate() - 30);
 
-    const expense = await Expense.find({ createdAt: { $gte: day } }).populate("recivedItems.product");
+    const expense = await Expense.find({ createdAt: { $gte: day } }).populate('supplier');
     res.status(200).json({
       success: true,
       expense,
     });
   }
 
-  const expense = await Expense.find().populate("recivedItems.product");
+  const expense = await Expense.find().populate('supplier');
   res.status(200).json({
     success: true,
     expense,

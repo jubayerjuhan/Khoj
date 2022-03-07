@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 const expenseSchema = new mongoose.Schema({
   supplier: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'supplier',
     required: true,
   },
   discount: {
@@ -11,6 +12,10 @@ const expenseSchema = new mongoose.Schema({
   },
   totalAmount: {
     type: Number,
+    required: true,
+  },
+  localBrand: {
+    type: String,
     required: true,
   },
   recivedItems: [
