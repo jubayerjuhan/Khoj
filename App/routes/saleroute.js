@@ -4,7 +4,7 @@ const { authorizeUser, authorizeAdmin } = require('../middleware/authorizeUser.j
 const router = express.Router();
 
 router.route('/sale/new').post(authorizeUser, authorizeAdmin, addSale);
-router.route('/sale/all').get(authorizeUser, authorizeAdmin, getAllSale);
+router.route('/sale/all').post(authorizeUser, authorizeAdmin, getAllSale);
 router.route('/sale/:id').get(authorizeUser, authorizeAdmin, getSingleSale);
 
 

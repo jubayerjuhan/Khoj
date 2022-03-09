@@ -1,5 +1,8 @@
+
 const Expense = require("../models/expenseModel.js");
 const catchAsyncError = require("../Utils/catchAsyncError.js");
+const Product = require("../models/productmodel.js");
+
 
 exports.addExpense = catchAsyncError(async (req, res, next) => {
   const {
@@ -9,6 +12,13 @@ exports.addExpense = catchAsyncError(async (req, res, next) => {
     recivedItems,
     localBrand
   } = req.body;
+
+  // recivedItems.forEach(item => {
+  //   const product = await Product.findByIdAndUpdate(item.product, {
+  //     $inc: { stock: +item.quantity }
+  //   }, { new: true });
+  // });
+
 
   const expense = await new Expense({
     supplier,

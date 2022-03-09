@@ -13,42 +13,47 @@ exports.addSale = catchAsyncError(async (req, res, next) => {
     note,
   } = req.body;
 
-  const sale = new Sale({
-    customerType,
-    name,
-    purchasePrice,
-    paymentMethod,
-    saleItems,
-    priceBreakdown,
-    note
-  });
-  await sale.save();
+  console.log(saleItems)
+  // const sale = new Sale({
+  //   customerType,
+  //   name,
+  //   purchasePrice,
+  //   paymentMethod,
+  //   saleItems,
+  //   priceBreakdown,
+  //   note
+  // });
+  // await sale.save();
   res.status(201).json({
     success: true,
-    sale,
+    // sale,
   });
 
 })
 
 
 exports.getAllSale = catchAsyncError(async (req, res, next) => {
-  const { time } = req.query;
+  const { date } = req.body;
+  const { today, week, time } = req.query;
 
-  if (time === 'today') {
-    const startOfDay = moment().startOf('day').toDate();
-    const endOfDay = moment().endOf('day').toDate();
-    const sale = await Sale.find({ createdAt: { $gte: startOfDay, $lte: endOfDay } }).populate("saleItems.product");
+
+  if (date) {
+    const sale = await Sale.find({ createdAt: { $gte: Date.parse(date.fromDate), $lte: Date.parse(date.toDate) } }).populate("saleItems.product");
     return res.status(200).json({
       success: true,
       sale,
-      today: startOfDay,
     });
   }
-
-  if (time === 'week') {
+  if (today) {
+    const sale = await Sale.find({ createdAt: { $gte: moment().startOf('day') } }).populate("saleItems.product");
+    return res.status(200).json({
+      success: true,
+      sale,
+    });
+  }
+  if (week) {
     const day = new Date();
     day.setDate(day.getDate() - 7);
-
     const sale = await Sale.find({ createdAt: { $gte: day } }).populate("saleItems.product");
     return res.status(200).json({
       success: true,
@@ -56,20 +61,10 @@ exports.getAllSale = catchAsyncError(async (req, res, next) => {
     });
   }
 
-  if (time === 'month') {
-    const day = new Date();
-    day.setDate(day.getDate() - 30);
-    console.log(day);
-
-    const sale = await Sale.find({ createdAt: { $gte: day } }).populate("saleItems.product");
-    return res.status(200).json({
-      success: true,
-      sale,
-    });
-  }
-
+  const day = new Date();
+  day.setDate(day.getDate() - 7);
   const sale = await Sale.find().populate("saleItems.product");
-  res.status(201).json({
+  return res.status(200).json({
     success: true,
     sale,
   });
