@@ -14,7 +14,7 @@ const product = require('./routes/productsroute.js')
 const sale = require('./routes/saleroute.js')
 const expense = require('./routes/expenseroute.js')
 // const expense = require('./routes/expenseroute.js')
-const investment = require('./routes/investmentroute.js')
+// const investment = require('./routes/investmentroute.js')
 
 
 app.use(fileupload())
@@ -32,7 +32,7 @@ app.use('/api/v1', category)
 app.use('/api/v1', product)
 app.use('/api/v1', sale)
 app.use('/api/v1', expense)
-app.use('/api/v1', investment)
+// app.use('/api/v1', investment)
 
 
 // catch error
