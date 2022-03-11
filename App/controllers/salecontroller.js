@@ -1,6 +1,7 @@
 const Sale = require("../models/salemodel.js");
 const catchAsyncError = require("../Utils/catchAsyncError.js");
 const moment = require("moment");
+const Product = require("../models/productmodel.js");
 
 exports.addSale = catchAsyncError(async (req, res, next) => {
   const {
@@ -13,20 +14,30 @@ exports.addSale = catchAsyncError(async (req, res, next) => {
     note,
   } = req.body;
 
-  console.log(saleItems)
-  // const sale = new Sale({
-  //   customerType,
-  //   name,
-  //   purchasePrice,
-  //   paymentMethod,
-  //   saleItems,
-  //   priceBreakdown,
-  //   note
-  // });
-  // await sale.save();
+
+  const changeStock = async (item) => {
+    const product = await Product.findById(item.product);
+    product.stock = product.stock - item.quantity;
+    await product.save();
+  }
+
+
+  saleItems.forEach(item => {
+    changeStock(item);
+  });
+  const sale = new Sale({
+    customerType,
+    name,
+    purchasePrice,
+    paymentMethod,
+    saleItems,
+    priceBreakdown,
+    note
+  });
+  await sale.save();
   res.status(201).json({
     success: true,
-    // sale,
+    sale,
   });
 
 })

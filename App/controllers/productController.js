@@ -67,7 +67,7 @@ exports.getProducts = catchAsyncError(async (req, res, next) => {
       products,
     })
   }
-  const products = await Product.find();
+  const products = await Product.find().populate("category");
   res.status(200).json({
     success: true,
     products,

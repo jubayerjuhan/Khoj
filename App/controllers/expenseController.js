@@ -13,11 +13,16 @@ exports.addExpense = catchAsyncError(async (req, res, next) => {
     localBrand
   } = req.body;
 
-  // recivedItems.forEach(item => {
-  //   const product = await Product.findByIdAndUpdate(item.product, {
-  //     $inc: { stock: +item.quantity }
-  //   }, { new: true });
-  // });
+  const changeStock = async (item) => {
+    const product = await Product.findById(item.product);
+    product.stock += item.quantity;
+    await product.save();
+  }
+
+
+  recivedItems.forEach(item => {
+    changeStock(item);
+  });
 
 
   const expense = await new Expense({
