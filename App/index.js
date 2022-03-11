@@ -13,6 +13,7 @@ const category = require('./routes/categoryroute.js')
 const product = require('./routes/productsroute.js')
 const sale = require('./routes/saleroute.js')
 const expense = require('./routes/expenseroute.js')
+// const expense = require('./routes/expenseroute.js')
 const investment = require('./routes/investmentroute.js')
 
 
