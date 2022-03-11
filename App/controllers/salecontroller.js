@@ -17,7 +17,8 @@ exports.addSale = catchAsyncError(async (req, res, next) => {
 
   const changeStock = async (item) => {
     const product = await Product.findById(item.product);
-    product.stock = product.stock - item.quantity;
+    const stock = parseInt(product.stock) - parseInt(item.quantity);
+    product.stock = stock;
     await product.save();
   }
 

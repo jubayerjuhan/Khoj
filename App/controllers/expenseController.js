@@ -15,7 +15,9 @@ exports.addExpense = catchAsyncError(async (req, res, next) => {
 
   const changeStock = async (item) => {
     const product = await Product.findById(item.product);
-    product.stock += item.quantity;
+    let stock = parseInt(product.stock) + parseInt(item.quantity);
+    product.stock = stock;
+    console.log(product);
     await product.save();
   }
 
@@ -23,7 +25,6 @@ exports.addExpense = catchAsyncError(async (req, res, next) => {
   recivedItems.forEach(item => {
     changeStock(item);
   });
-
 
   const expense = await new Expense({
     supplier,
