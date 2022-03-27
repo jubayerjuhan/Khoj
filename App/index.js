@@ -9,10 +9,7 @@ const fileupload = require('express-fileupload')
 const connectDatabase = require('../App/database/database.js');
 const error = require('./middleware/error.js');
 const user = require('./routes/userroute.js')
-const category = require('./routes/categoryroute.js')
-const product = require('./routes/productsroute.js')
-const sale = require('./routes/saleroute.js')
-const expense = require('./routes/expenseroute.js')
+const lostPerson = require('./routes/lostPersonRoute.js')
 // const expense = require('./routes/expenseroute.js')
 // const investment = require('./routes/investmentroute.js')
 
@@ -28,11 +25,7 @@ connectDatabase();
 
 // all routes to api
 app.use('/api/v1', user)
-app.use('/api/v1', category)
-app.use('/api/v1', product)
-app.use('/api/v1', sale)
-app.use('/api/v1', expense)
-// app.use('/api/v1', investment)
+app.use('/api/v1', lostPerson)
 
 
 // catch error

@@ -1,7 +1,7 @@
 {
-  "name": "instagram-clone-server",
+  "name": "khoj-server",
   "version": "1.0.0",
-  "description": "insta clone server",
+  "description": "Khoj Server",
   "main": "index.js",
   "scripts": {
     "start": "node App/index.js",
@@ -13,7 +13,7 @@
     "clone",
     "server"
   ],
-  "author": "Jubayer Juhan",
+  "author": "Murad Khan",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
