@@ -10,6 +10,7 @@ const connectDatabase = require('../App/database/database.js');
 const error = require('./middleware/error.js');
 const user = require('./routes/userroute.js')
 const lostPerson = require('./routes/lostPersonRoute.js')
+const foundPerson = require('./routes/foundPersonRoute.js')
 // const expense = require('./routes/expenseroute.js')
 // const investment = require('./routes/investmentroute.js')
 
@@ -26,6 +27,7 @@ connectDatabase();
 // all routes to api
 app.use('/api/v1', user)
 app.use('/api/v1', lostPerson)
+app.use('/api/v1', foundPerson)
 
 
 // catch error
