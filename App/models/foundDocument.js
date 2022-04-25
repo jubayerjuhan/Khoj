@@ -30,6 +30,7 @@ const foundDocumentSchema = new mongoose.Schema({
     type: String,
   },
   found: {
+    type: Boolean,
     default: true,
   }
 })

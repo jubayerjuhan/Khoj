@@ -37,6 +37,7 @@ const lostPersonSchema = new mongoose.Schema({
     type: String,
   },
   found: {
+    type: Boolean,
     default: false,
   },
   createdAt: {

@@ -32,6 +32,7 @@ const foundPersonSchema = new mongoose.Schema({
     default: Date.now()
   },
   found: {
+    type: Boolean,
     default: true,
   }
 })

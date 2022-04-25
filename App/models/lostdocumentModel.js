@@ -37,6 +37,7 @@ const lostDocumentSchema = new mongoose.Schema({
     type: String,
   },
   found: {
+    type: Boolean,
     default: false,
   },
   createdAt: {
