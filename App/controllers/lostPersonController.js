@@ -12,10 +12,12 @@ exports.createLostPerson = catchAsyncError(async (req, res, next) => {
     phone,
     nidNo,
     relation,
-    gdNo
+    gdNo,
+    caption
   } = req.body;
 
   cloundinary.uploader.upload(photo, async (err, result) => {
+    console.log(result, err);
     if (err) return next(new ErrorHandler(err.message, 400));
     const lostPerson = await LostPerson.create({
       name,
@@ -25,7 +27,9 @@ exports.createLostPerson = catchAsyncError(async (req, res, next) => {
       phone,
       nidNo,
       relation,
-      gdNo
+      gdNo,
+      caption,
+      user: req.user,
     });
 
     res.status(201).json({
@@ -43,5 +47,24 @@ exports.getAllLostPerson = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     lostPerson
+  });
+});
+
+
+exports.lostPersonSearch = catchAsyncError(async (req, res, next) => {
+  const { keyword } = req.params;
+  const lostPerson = await LostPerson.find({
+    $or: [
+      { name: { $regex: keyword, $options: "i" } },
+      { address: { $regex: keyword, $options: "i" } },
+      { returnAddress: { $regex: keyword, $options: "i" } },
+      { relation: { $regex: keyword, $options: "i" } },
+      { gdNo: { $regex: keyword, $options: "i" } },
+      { caption: { $regex: keyword, $options: "i" } }
+    ]
+  });
+  res.status(200).json({
+    success: true,
+    result: lostPerson
   });
 });

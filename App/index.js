@@ -11,13 +11,11 @@ const error = require('./middleware/error.js');
 const user = require('./routes/userroute.js')
 const lostPerson = require('./routes/lostPersonRoute.js')
 const foundPerson = require('./routes/foundPersonRoute.js')
-// const expense = require('./routes/expenseroute.js')
-// const investment = require('./routes/investmentroute.js')
 
 
 app.use(fileupload())
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cors());
 
 // connect to mongodb database

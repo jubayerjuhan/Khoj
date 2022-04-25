@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const lostPersonSchema = new mongoose.Schema({
+const foundDocumentSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -14,32 +14,21 @@ const lostPersonSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  returnAddress: {
-    type: String,
-    required: true
-  },
   phone: {
     type: Number,
     required: true
   },
-  nidNo: {
-    type: Number,
-    required: true
-  },
-  relation: {
-    type: String,
-    required: true
-  },
-  gdNo: {
-    type: String,
-  },
-  caption: {
-    type: String,
-  },
   createdAt: {
     type: Date,
     default: Date.now()
+  },
+  documentType: {
+    type: String,
+    required: true
+  },
+  caption: {
+    type: String,
   }
 })
 
-module.exports = mongoose.model('lostPerson', lostPersonSchema);
+module.exports = mongoose.model('foundDocument', foundDocumentSchema);

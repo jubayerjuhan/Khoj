@@ -18,6 +18,15 @@ const foundPersonSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  caption: {
+    type: String,
+  },
+  user: {
+    type: Object,
+  },
+  user: {
+    type: Object,
+  },
   createdAt: {
     type: Date,
     default: Date.now()

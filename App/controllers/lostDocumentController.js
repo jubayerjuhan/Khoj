@@ -12,7 +12,8 @@ exports.createLostDocument = catchAsyncError(async (req, res, next) => {
     address,
     phone,
     nidNo,
-    gdNo
+    gdNo,
+    caption
   } = req.body;
 
   cloundinary.uploader.upload(photo, async (err, result) => {
@@ -26,7 +27,8 @@ exports.createLostDocument = catchAsyncError(async (req, res, next) => {
       address,
       phone,
       nidNo,
-      gdNo
+      gdNo,
+      caption
     });
 
     res.status(201).json({
