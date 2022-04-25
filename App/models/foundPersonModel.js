@@ -30,6 +30,9 @@ const foundPersonSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now()
+  },
+  found: {
+    default: true,
   }
 })
 

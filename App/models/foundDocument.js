@@ -28,6 +28,9 @@ const foundDocumentSchema = new mongoose.Schema({
   },
   caption: {
     type: String,
+  },
+  found: {
+    default: true,
   }
 })
 
