@@ -26,7 +26,12 @@ connectDatabase();
 app.use('/api/v1', user)
 app.use('/api/v1', lostPerson)
 app.use('/api/v1', foundPerson)
-
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'Server Is Up And Running',
+  });
+})
 
 // catch error
 app.use(error)
