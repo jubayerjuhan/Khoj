@@ -1,34 +1,33 @@
-const mongoose = require('mongoose')
-
+const mongoose = require("mongoose");
 
 const lostPersonSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   photo: {
     type: String,
-    required: true
+    required: true,
   },
   address: {
     type: String,
-    required: true
+    required: true,
   },
   returnAddress: {
     type: String,
-    required: true
+    required: true,
   },
   phone: {
     type: Number,
-    required: true
+    required: true,
   },
   nidNo: {
     type: Number,
-    required: true
+    required: true,
   },
   relation: {
     type: String,
-    required: true
+    required: true,
   },
   gdNo: {
     type: String,
@@ -42,8 +41,8 @@ const lostPersonSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now()
-  }
-})
+    default: Date.now(),
+  },
+});
 
-module.exports = mongoose.model('lostPerson', lostPersonSchema);
+module.exports = mongoose.model("lostPerson", lostPersonSchema);
