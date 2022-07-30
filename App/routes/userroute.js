@@ -17,7 +17,7 @@ const {
 } = require("../middleware/authorizeUser.js");
 const router = express.Router();
 
-router.route("/storeUser").get(storeUserInfo);
+router.route("/storeUser").post(storeUserInfo);
 router.route("/updatedp").put(updateProfilePicture);
 router.route("/updateUser").put(updateUser);
 router.route("/me").get(loadUser);
