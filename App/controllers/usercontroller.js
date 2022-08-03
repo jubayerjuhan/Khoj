@@ -92,7 +92,6 @@ const { cloundinary } = require("../Utils/cloudinary.js");
 
 exports.updateProfilePicture = catchAsyncError(async (req, res, next) => {
   const { profilePicture } = req.body;
-  console.log(profilePicture);
 
   const image = await cloundinary.uploader.upload(
     profilePicture,
@@ -134,9 +133,9 @@ exports.updateProfilePicture = catchAsyncError(async (req, res, next) => {
 // })
 
 exports.loadUser = catchAsyncError(async (req, res, next) => {
+  console.log(req.body, "ree");
   const user = await User.findOne({ email: req.body.email });
   if (!user) return next(new ErrorHandler("User Not Found", 400));
-
   res.status(200).json({
     success: true,
     user,
@@ -158,6 +157,7 @@ exports.storeUserInfo = catchAsyncError(async (req, res, next) => {
 });
 
 exports.updateUser = catchAsyncError(async (req, res, next) => {
+  console.log(req.body, "ree");
   const user = await User.findOneAndUpdate({ email: req.body.email }, req.body);
 
   res.status(200).json({

@@ -20,6 +20,6 @@ const router = express.Router();
 router.route("/storeUser").post(storeUserInfo);
 router.route("/updatedp").put(updateProfilePicture);
 router.route("/updateUser").put(updateUser);
-router.route("/me").get(loadUser);
+router.route("/me").post(loadUser);
 
 module.exports = router;
