@@ -131,6 +131,15 @@ exports.updateProfilePicture = catchAsyncError(async (req, res, next) => {
 //     post
 //   });
 // })
+exports.getAllUser = catchAsyncError(async (req, res, next) => {
+  const users = await User.find({});
+  if (!users) return next(new ErrorHandler("User Not Found", 400));
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
 
 exports.loadUser = catchAsyncError(async (req, res, next) => {
   console.log(req.body, "ree");

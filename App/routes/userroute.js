@@ -10,6 +10,7 @@ const {
   loadUser,
   storeUserInfo,
   updateUser,
+  getAllUser,
 } = require("../controllers/usercontroller.js");
 const {
   authorizeUser,
@@ -19,6 +20,7 @@ const router = express.Router();
 
 router.route("/storeUser").post(storeUserInfo);
 router.route("/updatedp").put(updateProfilePicture);
+router.route("/users").get(getAllUser);
 router.route("/updateUser").put(updateUser);
 router.route("/me").post(loadUser);
 

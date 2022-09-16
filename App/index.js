@@ -21,7 +21,6 @@ app.use(cors());
 // connect to mongodb database
 connectDatabase();
 
-
 // all routes to api
 app.use('/api/v1', user)
 app.use('/api/v1', lostPerson)
